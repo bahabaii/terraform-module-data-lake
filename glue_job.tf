@@ -24,17 +24,18 @@ resource "aws_glue_job" "glue_job" {
   worker_type            = var.glue_job.worker_type
   number_of_workers      = var.glue_job.number_of_workers
   
-  default_arguments = {
+ default_arguments = {
     # ... potentially other arguments ...
     "--enable-continuous-cloudwatch-log" = "true"
     "--enable-continuous-log-filter"     = "true"
     "--enable-metrics"                   = "true"
-    "--TempDir"                          = "s3://aws-glue-assets-313555887466-eu-north-1/temporary/" 
-    "--extra-py-files"                   = "s3://technodom-prod-data-lake-s3-glue-libs/delta-core_2.12-1.0.0.jar"
-    "--extra-jars"                       = "s3://technodom-prod-data-lake-s3-glue-libs/delta-core_2.12-1.0.0.jar"
+    "--TempDir"                          = var.glue_job.tempdir
+    "--extra-py-files"                   = var.glue_job.extra_py_files
+    "--extra-jars"                       = var.glue_job.extra_jars
     "--user-jars-first"                  = "true"
     "--enable-spark-ui"                  = "true"
     "--enable-glue-datacatalog"          = "true"  
+    "--spark-event-logs-path"            = var.glue_job.spark-event-logs-path
   }
 
 
