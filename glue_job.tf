@@ -32,9 +32,11 @@ resource "aws_glue_job" "glue_job" {
     "--TempDir"                          = "s3://aws-glue-assets-313555887466-eu-north-1/temporary/" 
     "--extra-py-files"                   = "s3://technodom-prod-data-lake-s3-glue-libs/delta-core_2.12-1.0.0.jar"
     "--extra-jars"                       = "s3://technodom-prod-data-lake-s3-glue-libs/delta-core_2.12-1.0.0.jar"
+    "--spark-event-logs-path"            = "s3://aws-glue-assets-313555887466-eu-north-1/sparkHistoryLogs/"
     "--user-jars-first"                  = "true"
     "--enable-spark-ui"                  = "true"
     "--enable-glue-datacatalog"          = "true"  
+    "--job-bookmark-option"              = "job-bookmark-disable"
   }
 
 
